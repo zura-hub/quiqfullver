@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+    <title>Service</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <nav class="nav-bar">
+                <div class="logo">
+                    <a href="{% url 'home' %}"><img src="{% static 'main/images/LOGO.PNG' %}" alt="QUICK LOCKSMITH"></a>
+                </div>
+
+
+                <div class="burger">
+                    <div class="br_icon">︾</div>
+                </div>
+            </nav>
+             <div class="lis">
+                <li class="list"><a href="{% url 'home' %}">Home</a></li>
+                <li class="list"><a href="{% url 'services' %}">Services</a></li>
+                <li class="list"><a href="{% url 'reviews' %}">Reviews</a></li>
+                <li class="list"><a href="{% url 'location' %}">Contact</a></li>
+                 <li class="list" id="Lo"><a href="{% url 'login' %}">Log In</a></li>
+
+                 {% if request.user.is_authenticated %}
+                     <style>
+                        #Lo {
+                            display: none;
+                        }
+                    </style>
+                 <div class="logged-user">
+                          <div class="fl-left">
+                              <span>Hello</span>
+                              <p class="hello-user">{{ user }}</p>
+                          </div>
+
+
+
+                         <form class="logout" method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button class="out" type="submit">Logout --></button>
+                         </form>
+
+
+                  </div>
+
+                 {% else %}
+
+                 <li class="list"><a href="{% url 'sign_up' %}">Sign up</a></li>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- middle content -->
+
+    <div class="middle_map">
+<!--        <div id="map"></div>-->
+
+        <div class="contact_Info">
+            <div class="number">
+                <img src="{% static 'main/images/phone.png' %}" alt="QUICK LOCKSMITH">
+                <p>
+                    <a href="tel:+12675795518">+1(267)-579-55-18</a>
+                </p>
+
+            </div>
+
+            <div class="mail">
+                <img src="{% static 'main/images/mail.png' %}" alt="QUICK LOCKSMITH">
+                <p class="mailT">
+                    <a href="mailto:quicklocksmith7@gmail.com">quicklocksmith7@gmail.com</a>
+                </p>
+            </div>
+
+
+            <div class="address">
+                <img src="{% static 'main/images/address.png' %}" alt="QUICK LOCKSMITH">
+
+                <p class="adrs">
+                    <a href="https://www.google.com/maps/search/?api=1&query=Pekini+ave+33,+Tbilisi,+Georgia"
+                        target="_blank">Pekini ave 33, Tbilisi, Georgia</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container">
+        <footer>
+            <div class="social">
+                <a class="icon" target="_blank" href="https://www.facebook.com/archilishengelia"><img src="{% static 'main/images/fb.png' %}" alt=""></a>
+                <a class="icon" target="_blank" href="https://www.facebook.com/archilishengelia"><img src="{% static 'main/images/insta.jpg' %}" alt=""></a>
+                <a class="icon" target="_blank" href="https://www.facebook.com/archilishengelia"><img src="{% static 'main/images/twit.PNG' %}" alt=""></a>
+            </div>
+        </footer>
+    </div>
+
+
+    <script src="{% static 'main/js/js.js' %}"></script>
+    <script src="{% static 'main/js/location.js' %}"></script>
+</body>
+
+</html>
